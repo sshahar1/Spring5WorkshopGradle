@@ -5,6 +5,7 @@ import com.tikalk.workshop.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,6 +29,11 @@ public class PersonService {
         return personRepository.saveAll(persons);
     }
 
+    @SuppressWarnings("UnusedReturnValue")
+    public Mono<Person> storePerson(Person person) {
+        return personRepository.save(person);
+    }
+
     public Flux<Person> storePersonsMono(List<Person> persons) {
         return Flux.concat(
                 persons
@@ -38,5 +44,9 @@ public class PersonService {
 
     public Flux<Person> getAll() {
         return personRepository.findAll();
+    }
+
+    public Mono<Person> get(Long id) {
+        return personRepository.findById(id);
     }
 }

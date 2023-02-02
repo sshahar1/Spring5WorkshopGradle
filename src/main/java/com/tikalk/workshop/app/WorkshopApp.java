@@ -30,8 +30,8 @@ public class WorkshopApp {
 
     @Bean
     public RouterFunction<ServerResponse> controller(PersonHandler handler) {
-        return route(GET("/person/{id}").and(accept(APPLICATION_JSON)), handler::getPerson)
-                .andRoute(GET("/person").and(accept(APPLICATION_JSON)), handler::listPeople)
-                .andRoute(POST("/person"), handler::createPerson);
+        return route(GET("/person/handler/{id}").and(accept(APPLICATION_JSON)), handler::getPerson)
+                .andRoute(GET("/person/handler").and(accept(APPLICATION_JSON)), handler::listPeople)
+                .andRoute(POST("/person/handler").and(accept(APPLICATION_JSON)), handler::createPerson);
     }
 }
